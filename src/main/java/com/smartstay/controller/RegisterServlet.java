@@ -49,24 +49,20 @@ public class RegisterServlet extends HttpServlet {
 		
 		try {
 			boolean isPresent = udao.isEmailAlreadyExists(email);
-			
-			if(!isPresent) {
+			System.out.println(isPresent);
+			if(isPresent) {
 				HttpSession session = request.getSession();
 				session.setAttribute("failed", "Email Alreday Exists");
 				response.sendRedirect("register.jsp");
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			int insert = udao.insertUser(u);
-			
-			if(insert>0) {
-				HttpSession session = request.getSession();
-				session.setAttribute("success", "Registration Successfull");
-				response.sendRedirect("login.jsp");
+			else {
+				int insert = udao.insertUser(u);
+				
+				if(insert>0) {
+					HttpSession session = request.getSession();
+					session.setAttribute("success", "Registration Successfull");
+					response.sendRedirect("login.jsp");
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

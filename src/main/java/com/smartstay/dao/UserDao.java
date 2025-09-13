@@ -29,7 +29,7 @@ public class UserDao {
 		ResultSet rs = pstmt.executeQuery();
 	
 		while(rs.next()) {
-			if(rs.getString(1)==email) {
+			if(rs.getString(1).equalsIgnoreCase(email)) {
 				return true;
 			}
 		}
