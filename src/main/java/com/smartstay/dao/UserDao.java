@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.smartstay.model.Login;
 import com.smartstay.model.User;
 import com.smartstay.util.DBConnection;
 
@@ -35,6 +36,25 @@ public class UserDao {
 		}
 		
 		return false;
+	}
+	
+	public Login validateDetails(String email, String password) throws SQLException {
+		Connection con = DBConnection.getConnection();
+		String query = "select u_id, name, role from users where email = ? and password = ?";
+		PreparedStatement pstmt = con.prepareStatement(query);
+		pstmt.setString(1, email);
+		pstmt.setString(2, password);
+		ResultSet rs = pstmt.executeQuery();
+		Login l = null;
+		if(rs.next()) {
+			l = new Login();
+			
+			l.setU_id(rs.getInt(1));
+			l.setName(rs.getString(2));
+			l.setRole(rs.getString(3));
+		}
+		
+		return l;
 	}
 	
 }
