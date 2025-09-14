@@ -54,6 +54,9 @@ public class LoginServlet extends HttpServlet {
 						response.sendRedirect("admin_dashboard.jsp");
 					}
 					else {
+						String name = l.getName();
+						HttpSession session = request.getSession();
+						session.setAttribute("user", name);
 						response.sendRedirect("user_dashboard.jsp");
 					}
 				}
