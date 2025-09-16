@@ -37,7 +37,7 @@ if(user == null) {
             </div>
 
             <div class="options-grid">
-                <a href="available-rooms.jsp" class="option-card">
+                <a href="book_rooms.jsp" class="option-card">
                     <span class="option-icon rooms-icon">🏨</span>
                     <h3>Available Rooms</h3>
                     <p>Browse and book from our selection of luxury rooms and suites</p>
